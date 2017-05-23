@@ -1,0 +1,29 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{{$title}}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <link rel="stylesheet" href="{{'static/css/weui.css'|base_url}}"/>
+    <link rel="stylesheet" href="{{'static/css/weui2.css'|base_url}}"/>
+    <link rel="stylesheet" href="{{'static/css/weui3.css'|base_url}}"/>
+    <script src="{{'static/js/zepto.min.js'|base_url}}"></script>
+    <script>
+        $(function(){
+
+
+        });
+
+    </script>
+</head>
+
+<body ontouchstart style="background-color: #f8f8f8;">
+{{include $__PAGE__}}
+<div class="weui-footer weui-footer-fixed-bottom">
+    <p class="weui-footer-links">
+        <a href="{{'dashboard'|base_url}}" class="weui-footer-link">返回首页</a>
+    </p>
+    <p class="weui-footer__text">Copyright &copy; 2008-2016 紫金花园 IMDB@119</p>
+</div>
+</body>
+</html>

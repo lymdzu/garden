@@ -1,0 +1,15 @@
+application/config/database.php
+application/config/config.php
+application/config/apps.php
+application/config/redis.php
+.idea
+img/*
+application/cache/*
+application/logs/*
+application/tests/*
+public/.htaccess
+.DS_Store
+application/.DS_Store
+*.swa
+*.swo
+application/tmpsh0vcsjb/*
