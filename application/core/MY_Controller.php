@@ -56,7 +56,18 @@ class PublicController extends CI_Controller
         $this->display($this->layout);
         exit();
     }
-
+    public function result($succ, $message, $redirect = "", $external=false){
+        $result = array(
+            'status' => (bool)$succ,
+            'message' => $message,
+            'redirect' => $this->config->base_url($redirect),
+            'addon' => ob_get_clean(),
+            'external' => $external,
+        );
+        header('Content-Type: text/json;charset=utf8');
+        echo json_encode($result);
+        exit();
+    }
     public function fetch($view)
     {
         $this->vars['BASE_URL'] = $this->config->base_url();
@@ -93,5 +104,55 @@ class PublicController extends CI_Controller
         }
         $new['p'] = $page_num;
         return http_build_query($new);
+    }
+    protected function __CreateOauthUrlForCode($redirectUrl, $scope = "snsapi_userinfo", $appid = WEIXIN_APPID)
+    {
+        $urlObj["appid"] = $appid;
+        $urlObj["redirect_uri"] = "$redirectUrl";
+        $urlObj["response_type"] = "code";
+        $urlObj["scope"] = $scope;
+        $urlObj["state"] = "STATE"."#wechat_redirect";
+        $bizString = $this->ToUrlParams($urlObj);
+        return "https://open.weixin.qq.com/connect/oauth2/authorize?".$bizString;
+    }
+    protected function GetOpenidFromMp($code, $appid=WEIXIN_APPID, $secret=WEIXIN_SECRET)
+    {
+        $url = $this->__CreateOauthUrlForOpenid($code, $appid, $secret);
+        //初始化curl
+        $ch = curl_init();
+        //设置超时
+        curl_setopt($ch, CURLOPT_TIMEOUT, 60);
+        curl_setopt($ch, CURLOPT_URL, $url);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER,FALSE);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST,FALSE);
+        curl_setopt($ch, CURLOPT_HEADER, FALSE);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+        //运行curl，结果以jason形式返回
+        $res = curl_exec($ch);
+        curl_close($ch);
+        //取出openid
+        return json_decode($res,true);
+    }
+    protected function __CreateOauthUrlForOpenid($code, $appid, $secret)
+    {
+        $urlObj["appid"] = $appid;
+        $urlObj["secret"] = $secret;
+        $urlObj["code"] = $code;
+        $urlObj["grant_type"] = "authorization_code";
+        $bizString = $this->ToUrlParams($urlObj);
+        return "https://api.weixin.qq.com/sns/oauth2/access_token?".$bizString;
+    }
+    private function ToUrlParams($urlObj)
+    {
+        $buff = "";
+        foreach ($urlObj as $k => $v)
+        {
+            if($k != "sign"){
+                $buff .= $k . "=" . $v . "&";
+            }
+        }
+
+        $buff = trim($buff, "&");
+        return $buff;
     }
 }

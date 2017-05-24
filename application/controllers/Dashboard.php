@@ -8,6 +8,7 @@ class Dashboard extends PublicController
 {
     public function index()
     {
+        $this->vars['fix_footer'] = true;
         $this->page('dashboard/front.html');
     }
 }

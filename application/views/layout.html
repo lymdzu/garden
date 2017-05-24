@@ -15,7 +15,7 @@
 
 <body ontouchstart style="background-color: #f8f8f8;">
 {{include $__PAGE__}}
-<div class="weui-footer weui-footer-fixed-bottom">
+<div class="weui-footer {{if $fix_footer}}weui-footer-fixed-bottom{{/if}}">
     <p class="weui-footer-links">
         <a href="{{'dashboard'|base_url}}" class="weui-footer-link">返回首页</a>
     </p>

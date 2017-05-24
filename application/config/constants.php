@@ -83,3 +83,23 @@ defined('EXIT_USER_INPUT')     OR define('EXIT_USER_INPUT', 7); // invalid user 
 defined('EXIT_DATABASE')       OR define('EXIT_DATABASE', 8); // database error
 defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automatically-assigned error code
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
+
+/*
+|--------------------------------------------------------------------------
+| Aliyun OSS Params
+|--------------------------------------------------------------------------
+|
+|
+|
+*/
+defined('OSS_BUCKET')            OR define('OSS_BUCKET', "zijin-garden");
+defined('OSS_ACCESS_KEY')        OR define('OSS_ACCESS_KEY', "LTAIRe8BXV2H1oOy");
+defined('OSS_SECRET_KEY')        OR define('OSS_SECRET_KEY', "sqlUotFyEH6SCcgDbycBnBzH8gizZt");
+defined('OSS_ENDPOINT')          OR define('OSS_ENDPOINT', "http://oss-cn-shanghai.aliyuncs.com");
+defined('OSS_PIC_URL')           OR define('OSS_PIC_URL', "http://zijin-garden.oss-cn-shanghai.aliyuncs.com/");
+
+
+
+defined('WEIXIN_APPID')            OR define('WEIXIN_APPID', "zijin-garden");
+defined('WEIXIN_SECRET')           OR define('WEIXIN_SECRET', "zijin-garden");
+
