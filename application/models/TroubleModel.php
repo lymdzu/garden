@@ -15,4 +15,23 @@ class TroubleModel extends MY_Model
         $this->db->insert("trouble", $info);
         return $this->db->affected_rows();
     }
+    public function get_trouble_list()
+    {
+        $query = $this->db->get("trouble");
+        return $query->result_array();
+    }
+
+    /**
+     * 获取问题详细信息
+     * @param $id
+     * @return mixed
+     * @author liuyongming@shopex.cn
+     */
+    public function get_trouble_info($id)
+    {
+        $this->db->where("id", $id);
+        $query = $this->db->get("trouble");
+        return $query->row_array();
+    }
+
 }
