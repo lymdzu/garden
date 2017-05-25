@@ -150,6 +150,7 @@ class Trouble extends PublicController
         } catch (OssException $e) {
             return false;
         }
+        unset($pic);
         header("Content-type:application/json");
         echo json_encode(array("src" => OSS_PIC_URL . $object));
     }
