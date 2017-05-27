@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="{{'static/css/weui2.css'|base_url}}"/>
     <link rel="stylesheet" href="{{'static/css/weui3.css'|base_url}}"/>
     <script src="{{'static/js/zepto.min.js'|base_url}}"></script>
-    {{if $page == 'trouble'}}
+    {{if $page == 'trouble' || $page == 'vote'}}
     <script src="{{'static/js/lrz.min.js'|base_url}}"></script>
+    {{/if}}
+    {{if $page == 'vote'}}
+    <script src="{{'static/js/select.js'|base_url}}"></script>
+    <script src="{{'static/js/picker.js'|base_url}}"></script>
     {{/if}}
 </head>
 

@@ -100,6 +100,6 @@ defined('OSS_PIC_URL')           OR define('OSS_PIC_URL', "http://zijin-garden.o
 
 
 
-defined('WEIXIN_APPID')            OR define('WEIXIN_APPID', "zijin-garden");
-defined('WEIXIN_SECRET')           OR define('WEIXIN_SECRET', "zijin-garden");
+defined('WEIXIN_APPID')            OR define('WEIXIN_APPID', "wx754245cfbd3e7298");
+defined('WEIXIN_SECRET')           OR define('WEIXIN_SECRET', "96d921e4ac63782c2d15d588660c4093");
 

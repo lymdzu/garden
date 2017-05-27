@@ -106,7 +106,8 @@ class Trouble extends PublicController
     public function add()
     {
         if ($this->input->method() == "post") {
-            $files = $this->input->post("files");
+            $post_files = $this->input->post("files");
+            $files = array_reverse($post_files);
             $desc = $this->input->post("desc", true);
             if (empty($desc)) {
                 $this->result(false, "请描述一下你所发现的问题");
@@ -143,7 +144,7 @@ class Trouble extends PublicController
         $pic = base64_decode($pic_base);
         $ossClient = new OssClient(OSS_ACCESS_KEY, OSS_SECRET_KEY, OSS_ENDPOINT);
         $openid = "accdddddd";
-        $object = "{$openid}/" . $openid . time() . $imglist[$meta_data];
+        $object = "{$openid}/" . $openid . time() . mt_rand(0000, 9999) . $imglist[$meta_data];
         $options = array(OssClient::OSS_HEADERS => array());
         try {
             $ossClient->putObject(OSS_BUCKET, $object, $pic, $options);
