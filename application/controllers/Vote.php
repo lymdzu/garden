@@ -49,4 +49,44 @@ class Vote extends PublicController
         }
 
     }
+    public function vote_list()
+    {
+        $this->load->model("VoteModel", "vote", true);
+        $votes = $this->vote->get_vote_list();
+        foreach ($votes as $key => $item)
+        {
+            $votes[$key]['img'] = unserialize($item['img']);
+            $votes[$key]['slogan'] = mb_substr($item['slogan'], 0, 32) . "...";
+            $votes[$key]['create_time'] = date("Y-m-d H:i:s", $item['create_time']);
+        }
+        shuffle($votes);
+        $this->vars['vote'] = $votes;
+        $this->page("vote/vote_list.html");
+    }
+    public function show()
+    {
+        $vote_id = $this->input->get("id");
+        $this->load->model("VoteModel", "vote", true);
+        $info = $this->vote->get_vote_by_id($vote_id);
+        $info['img'] = unserialize($info['img']);
+        $info['slogan'] = mb_substr($info['slogan'], 0, 32) . "...";
+        $info['create_time'] = date("Y-m-d H:i:s", $info['create_time']);
+        $this->vars['info'] = $info;
+        $this->page("vote/show.html");
+    }
+    public function request()
+    {
+        $vote_id = $this->input->post("id", true);
+        $this->load->model("VoteModel", "vote", true);
+        $ticket_arr = $this->vote->get_vote_by_id($vote_id);
+        $update_res = $this->vote->vote_request($vote_id, $ticket_arr['ticket'] + 1);
+        if($update_res == 1)
+        {
+            $this->result(true, "投给了" . $ticket_arr['name'] . "一票");
+        }
+        else
+        {
+            $this->result(false, "投票失败");
+        }
+    }
 }

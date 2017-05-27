@@ -1,0 +1,58 @@
+<style>
+    .weui-media-name {
+        margin-bottom: 1rem;
+    }
+    .weui_btn_position
+    {
+        margin:1rem 3.5rem 1rem;
+    }
+</style>
+<div class=" weui_panel_access">
+    <div class="weui_panel_hd">竞选人</div>
+    <div class="weui_panel_bd">
+        {{foreach $vote as $key => $item}}
+        <div class="weui-form-preview">
+            <a href="{{'vote/show'|base_url}}?id={{$item.id}}" class="weui_media_box weui_media_appmsg weui_panel_ft">
+                <div class="weui_media_hd">
+                    <img class="weui_media_appmsg_thumb"
+                         src="{{$item.img.0}}?x-oss-process=image/resize,m_pad,h_200,w_200" alt="">
+                </div>
+                <div class="weui_media_bd">
+                    <h4 class="weui-media-name">{{$item.name}}</h4>
+                    <p class="weui_media_desc">{{$item.slogan}}</p>
+                </div>
+            </a>
+            <div class="weui-form-preview-ft">
+                <a class="weui-form-preview-btn weui-form-preview-btn-default" href="javascript:">单元号&nbsp;{{$item.unit}}</a>
+                <button class="weui-form-preview-btn weui-form-preview-btn-primary" href="javascript:">得票数{{$item.ticket}}</button>
+            </div>
+        </div>
+
+        <div class="weui_btn_position">
+            <button class="weui_btn weui_btn_primary vote" data-id="{{$item.id}}">投一票</button>
+        </div>
+        {{/foreach}}
+
+    </div>
+</div>
+<script>
+    $(function () {
+        $(".vote").on("click", function () {
+            var id = $(this).data("id");
+            $.post("{{'vote/request'|base_url}}", {id:id},function (result) {
+                var res = JSON.parse(result);
+                if(res.status)
+                {
+                    $.toast(res.message);
+                    window.location.reload();
+                }
+                else
+                {
+                    $.toast(res.message, "cancel");
+                }
+            })
+
+        })
+        
+    })
+</script>

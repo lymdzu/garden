@@ -1,0 +1,44 @@
+
+<div class="weui-weixin">
+    <div class="weui-weixin-ui">
+        <!--页面开始-->
+        <div class="weui-weixin-page">
+            <div class="weui-weixin-info"><!--meta-->
+                <span class="weui-weixin-em">申请时间</span>
+                <em class="weui-weixin-em" >{{$info.create_time}}</em>
+                <!--<a class="weui-weixin-a weui-weixin-nickname" href="javascript:void(0);" >占位</a>-->
+            </div><!--meta结束-->
+            <div class="weui-weixin-content"><!--内容-->
+                <p>{{$info.slogan}}</p>
+            </div><!--内容结束-->
+            {{foreach $info.img as $img_src}}
+            <div class="weui-weixin-img"><!--图片开始-->
+                <img src="{{$img_src}}">
+            </div><!--图片结束-->
+            {{/foreach}}
+            <script>
+                $(function(){
+                    $("img").addClass('weixin');
+                    $('.weui-weixin-zan').click(function(){
+                        if($(this).hasClass('zaned')){
+                            $(this).removeClass('zaned');
+                            var  val = $(this).next().html();
+                            if(parseInt(val)==0){
+                                var i=1;
+                            }else{
+                                var  i  =  parseInt(val)-1;
+                            }
+                            $(this).next().html(i);
+
+                        }else{
+                            $(this).addClass('zaned');
+                            var  val = $(this).next().html();
+                            $(this).next().html(parseInt(val)+1);
+                            //ajax操作
+                        }
+                    });
+                });
+            </script>
+        </div><!--页面结束-->
+    </div>
+</div>

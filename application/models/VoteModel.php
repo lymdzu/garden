@@ -21,4 +21,21 @@ class VoteModel extends MY_Model
         $this->db->insert("vote", $params);
         return $this->db->affected_rows();
     }
+    public function get_vote_list()
+    {
+        $query = $this->db->get("vote");
+        return $query->result_array();
+    }
+    public function vote_request($id, $ticket)
+    {
+        $this->db->where("id", $id);
+        $this->db->update("vote", array("ticket" => $ticket));
+        return $this->db->affected_rows();
+    }
+    public function get_vote_by_id($id)
+    {
+        $this->db->where("id", $id);
+        $query = $this->db->get("vote");
+        return $query->row_array();
+    }
 }
