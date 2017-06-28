@@ -60,10 +60,10 @@
 
 
 
-<div class="weui_cells_tips">小区使我们的家,大家随手把看到的问题拍下来上传。(\(^o^)/~ 图片也可以不传的)</div>
+<div class="weui_cells_tips">小区是我们的家,大家随手把看到的问题拍下来上传。(\(^o^)/~ 图片也可以不传的)</div>
 
 <div class="weui_btn_area">
-    <button class="weui_btn weui_btn_primary" id="formSubmitBtn">确定</button>
+    <button class="weui_btn weui_btn_primary" id="formSubmitBtn">提交</button>
 </div>
 
 <script>
@@ -86,6 +86,7 @@
                 var result = JSON.parse(res);
                 if(result.status)
                 {
+                    $.toast(result.message);
                     window.location.href ="{{'/'|base_url}}";
                 }
                 else

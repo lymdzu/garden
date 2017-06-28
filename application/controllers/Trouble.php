@@ -48,7 +48,7 @@ class Trouble extends PublicController
         $this->load->model("TroubleModel", "trouble", true);
         $info = $this->trouble->get_trouble_info($trouble_id);
         $info['files'] = unserialize($info['files']);
-        $info['create_time'] = date("Y-m-d H:i:s", $info['create_time']);
+        $info['create_time'] = date("Y-m-d H:i", $info['create_time']);
         $this->vars['info'] = $info;
         $this->vars['footer'] = true;
         $this->page("trouble/show.html");
@@ -115,7 +115,7 @@ class Trouble extends PublicController
             $this->load->model("TroubleModel", "trouble", true);
             $insert_res = $this->trouble->insert_trouble(serialize($files), $desc);
             if ($insert_res == 1) {
-                $this->result(true, "添加成功");
+                $this->result(true, "问题提交成功");
             }
             else {
                 $this->result(false, "添加失败");
