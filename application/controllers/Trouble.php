@@ -14,6 +14,8 @@ class Trouble extends PublicController
     public function __construct()
     {
         parent::__construct();
+        $this->vars['footer'] = true;
+        $this->vars['fix_footer'] = true;
         $this->vars['page'] = "trouble";
         $openid = $this->session->userdata("openid");
         if (empty($openid)) {
@@ -50,7 +52,6 @@ class Trouble extends PublicController
         $info['files'] = unserialize($info['files']);
         $info['create_time'] = date("Y-m-d H:i", $info['create_time']);
         $this->vars['info'] = $info;
-        $this->vars['footer'] = true;
         $this->page("trouble/show.html");
     }
 
@@ -85,8 +86,6 @@ class Trouble extends PublicController
      */
     public function contact()
     {
-        $this->vars['footer'] = true;
-        $this->vars['fix_footer'] = true;
         $this->page("trouble/contact.html");
     }
 
