@@ -15,7 +15,6 @@ class Trouble extends PublicController
     {
         parent::__construct();
         $this->vars['footer'] = true;
-        $this->vars['fix_footer'] = true;
         $this->vars['page'] = "trouble";
         $openid = $this->session->userdata("openid");
         if (empty($openid)) {

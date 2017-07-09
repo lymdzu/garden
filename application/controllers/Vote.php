@@ -10,7 +10,6 @@ class Vote extends PublicController
     {
         parent::__construct();
         $this->vars['footer'] = true;
-        $this->vars['fix_footer'] = true;
         $this->vars['page'] = "vote";
     }
 
