@@ -209,7 +209,6 @@ switch (ENVIRONMENT)
 			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
 		).DIRECTORY_SEPARATOR;
 	}
-	$system_path = DIRECTORY_SEPARATOR . "home" . DIRECTORY_SEPARATOR . "wwwroot" . DIRECTORY_SEPARATOR . "garden" . DIRECTORY_SEPARATOR . "system";
 	// Is the system path correct?
 	if ( ! is_dir($system_path))
 	{
