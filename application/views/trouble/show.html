@@ -60,6 +60,12 @@
                 <span class="weui-form-preview-value">{{$info.claim}}</span>
             </p>
             {{/if}}
+            {{if $info.unit}}
+            <p class="text-margin">
+                <label class="weui-form-preview-label">事发位置</label>
+                <span class="weui-form-preview-value">{{$info.unit}}单元</span>
+            </p>
+            {{/if}}
             <p class="weui-form-preview-label">问题描述</p>
             <p class="text-margin">
                 <span>{{$info.desc}}</span>

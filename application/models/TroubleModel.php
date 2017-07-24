@@ -6,10 +6,11 @@
  */
 class TroubleModel extends MY_Model
 {
-    public function insert_trouble($title, $claim, $files, $desc)
+    public function insert_trouble($title, $claim, $unit, $files, $desc)
     {
         $info['title'] = $title;
         $info['claim'] = $claim;
+        $info['unit'] = $unit;
         $info['files'] = $files;
         $info['desc'] = $desc;
         $info['create_time'] = time();
