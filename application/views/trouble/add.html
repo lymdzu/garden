@@ -111,7 +111,7 @@
                 xhr.onload = function () {
                     if (xhr.status === 200) {
                         var obj = eval('(' + xhr.responseText + ')');
-                        $('#img2').append('<li class="weui_uploader_file weui_uploader_pic_list" style="background-image:url(' + obj.src + '?x-oss-process=image/resize,m_pad,h_200,w_200)"></li>');
+                        $('#img2').append('<li onclick=\"var delimg = $(this);var imgurl = $(this).data(\'url\');$.confirm(\'您确定要删除吗?\', \'确认删除?\', function () {delimg.remove();$(\'#file2\').find(\'input\').each(function () {if ($(this).val() == imgurl) {$(this).remove();}});}, function () {$.toast(\'取消操作\', \'cancel\');});" class="weui_uploader_file weui_uploader_pic_list" data-url='+ obj.src+' style="background-image:url(' + obj.src + '?x-oss-process=image/resize,m_pad,h_200,w_200)"><i class="weui_icon_cancel"></i></li>');
                         $('#file2').append('<input value="' + obj.src + '"  type="hidden"  name="files[]" />');
                     }
                 };
@@ -143,6 +143,19 @@
                 alert(err);
             }).always(function () {// 不管是成功失败，这里都会执行
                     });
+        }
+
+        function delete_item(self, obj) {
+            var delimg = self;
+            $.confirm('您确定要删除吗?', '确认删除?', function () {
+                delimg.remove();
+                $('#file2').find('input').each(function () {
+                    if (self.val() == obj.src) {
+                        self.remove();
+                    }});
+            }, function () {
+                $.toast('取消操作', 'cancel');
+            });
         }
         $('#headimgurl2').on("change", function (e) {
             var files = e.target.files;
