@@ -13,6 +13,32 @@
 </style>
 <form id="imglist">
     <div class="weui_cells_title">随手拍小区内发现的问题</div>
+    <div class="weui_cells_title">标题</div>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <input name="title" class="weui_textarea" placeholder="标题">
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells_title">述求</div>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <textarea name="claim" class="weui_textarea textarea" placeholder="请填写您的述求" rows="5"></textarea>
+
+                <div class="weui_textarea_counter"><span class='count'>0</span>/<span class='count_max'>300</span></div>
+            </div>
+        </div>
+    </div>
+    <div class="weui_cells_title">位置</div>
+    <div class="weui_cells weui_cells_form">
+        <div class="weui_cell">
+            <div class="weui_cell_bd weui_cell_primary">
+                <input class="weui_input" type="text" name="unit" value="" id='d1' placeholder="请选择问题所在单元号码"/>
+            </div>
+        </div>
+    </div>
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
@@ -50,9 +76,9 @@
     <div class="weui_cells weui_cells_form">
         <div class="weui_cell">
             <div class="weui_cell_bd weui_cell_primary">
-                <textarea id="textarea" name="desc" class="weui_textarea" placeholder="请描述您图片中所反映的问题" rows="3"></textarea>
+                <textarea name="desc" class="weui_textarea textarea" placeholder="请描述您图片中所反映的问题" rows="5"></textarea>
 
-                <div class="weui_textarea_counter"><span id='count'>0</span>/<span id='count_max'>100</span></div>
+                <div class="weui_textarea_counter"><span class='count'>0</span>/<span class='count_max'>300</span></div>
             </div>
         </div>
     </div>
@@ -68,11 +94,16 @@
 
 <script>
     $(function () {
-        var max = $('#count_max').text();
-        $('#textarea').on('input', function () {
+        $("#d1").select({
+            title: "选择居住单元",
+            autoClose: true,
+            items: [{{$no}}]}
+        );
+        $('.textarea').on('input', function () {
+            var max = $(this).next('.weui_textarea_counter').find(".count_max").text();
             var text = $(this).val();
             var len = text.length;
-            $('#count').text(len);
+            $(this).next('.weui_textarea_counter').find(".count").text(len);
             if (len > max) {
                 $(this).closest('.weui_cell').addClass('weui_cell_warn');
             }

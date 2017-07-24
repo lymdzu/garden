@@ -5,6 +5,9 @@
     .padding-none{
         padding-top:0rem;
     }
+    .text-margin{
+        margin-bottom: 0.6em;
+    }
 </style>
 <div class="weui-weixin">
     <div class="weui-weixin-ui">
@@ -46,9 +49,21 @@
                     <!--</li>-->
                 <!--</ul>-->
             <!--</div>-->
-            <div class="weui-weixin-content"><!--内容-->
-                <p>{{$info.desc}}</p>
-            </div><!--内容结束-->
+            <p class="text-margin">
+                <label class="weui-form-preview-label">标题</label>
+                <span class="weui-form-preview-value">{{$info.title}}</span>
+            </p>
+
+            {{if $info.claim}}
+            <p class="text-margin">
+                <label class="weui-form-preview-label">述求</label>
+                <span class="weui-form-preview-value">{{$info.claim}}</span>
+            </p>
+            {{/if}}
+            <p class="weui-form-preview-label">问题描述</p>
+            <p class="text-margin">
+                <span>{{$info.desc}}</span>
+            </p>
             {{foreach $info.files as $img}}
             <div class="weui-weixin-img"><!--图片开始-->
                 <img src="{{$img}}">

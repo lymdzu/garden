@@ -107,19 +107,23 @@ class Trouble extends PublicController
             $post_files = $this->input->post("files");
             $files = array_reverse($post_files);
             $desc = $this->input->post("desc", true);
+            $title = $this->input->post("title", true);
+            $claim = $this->input->post("claim", true);
+            if (empty($title)) {
+                $this->result(false, "请给反馈的问题精简出一个标题");
+            }
             if (empty($desc)) {
                 $this->result(false, "请描述一下你所发现的问题");
             }
             $this->load->model("TroubleModel", "trouble", true);
-            $insert_res = $this->trouble->insert_trouble(serialize($files), $desc);
+            $insert_res = $this->trouble->insert_trouble($title, $claim, serialize($files), $desc);
             if ($insert_res == 1) {
                 $this->result(true, "问题提交成功");
-            }
-            else {
+            } else {
                 $this->result(false, "添加失败");
             }
-        }
-        else {
+        } else {
+            $this->vars['no'] = "'" . implode("','", range(86, 126)) . "'" ;
             $this->page("trouble/add.html");
         }
     }
