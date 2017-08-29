@@ -8,8 +8,9 @@ class Dashboard extends PublicController
 {
     public function index()
     {
-        $this->vars['footer'] = true;
-        $this->vars['fix_footer'] = true;
-        $this->page('dashboard/front.html');
+//        $this->vars['footer'] = true;
+//        $this->vars['fix_footer'] = true;
+//        $this->page('dashboard/front.html');
+        $this->display("jianli/jianli.html");
     }
 }
