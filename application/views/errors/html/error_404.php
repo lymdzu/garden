@@ -59,7 +59,7 @@ p {
 	<div id="container">
 		<h1><?php echo $heading; ?></h1>
 		<?php echo $message; ?>
-		<h1>找不到饶晓华的简历?<a href="/resume/resume_and_works_of_raoxiaohua.pdf">点击查看</h1>
+		<h1>找不到饶晓华的简历?<a href="/resume/resume_and_works_of_raoxiaohua0914.pdf">点击查看</h1>
 	</div>
 </body>
 </html>
