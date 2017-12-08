@@ -1,0 +1,24 @@
+.hd{
+    padding: 2em 0;
+}
+.page_title {
+    text-align: center;
+    font-size: 34px;
+    color: #73b78f;
+    font-weight: 400;
+    margin: 0 15%;
+}
+.page_desc {
+    text-align: center;
+    color: #888;
+    font-size: 14px;
+}
+.dash-bg{
+
+}
+.foot-bg{
+    margin-top: 1rem;
+    background:url("../images/hehua.png") no-repeat;
+    background-size: 100%;
+    height: 10rem;
+}

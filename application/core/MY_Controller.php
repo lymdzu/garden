@@ -24,7 +24,7 @@ class PublicController extends CI_Controller
         $this->smarty->registerPlugin('modifier', 'pager', array($this, 'smarty_modifier_pager'));
         $this->smarty->registerPlugin('function', 'filter_keyword', array($this, 'smarty_modifier_filter_keyword'));
         $this->smarty->registerPlugin('modifier', 'filter_keyword', array($this, 'smarty_modifier_filter_keyword'));
-        $this->vars['title'] = "我们爱家";
+        $this->vars['title'] = "智慧紫金";
         $this->vars['CONFIG'] = $this->config->config;
         $this->vars['styles'] = array();
     }
